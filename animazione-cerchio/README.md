@@ -1,5 +1,4 @@
 # Animazione Cerchio
-======
 
 Prova per le animazioni dei cerchi
 
