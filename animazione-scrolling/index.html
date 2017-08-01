@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      html, body {
+      	height: 100%;
+      	margin: 0;
+      	padding: 0;
+        background-color: black;
+      }
+
+      #container {
+        position: relative;
+        width: 100%;
+        top: 250px;
+      	margin: 55vh 0;
+      }
+
+      #block {
+        width: 100%;
+      }
+
+      .pallina {
+        position: absolute;
+        left: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50px;
+        height: 50px;
+        background-color: white;
+        border-radius: 50%;
+        transform: translate(-50%,-50%);
+      }
+
+      .half-page{
+        position: fixed;
+        width: 100%;
+        top: 50%;
+        border: 0.5px dotted rgb(93, 93, 93);
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="half-page"></div>
+
+    <div id="container">
+      <div id="block">
+        <div class="pallina"></div>
+        <div id="move1" class="pallina"></div>
+        <div id="move2" class="pallina"></div>
+        <div id="move3" class="pallina"></div>
+        <div id="move4" class="pallina"></div>
+      </div>
+    </div>
+
+    <!-- include jQuery -->
+    <script src="http://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <!-- include GSAP -->
+    <script src="greensock-js/src/uncompressed/TweenMax.js"></script>
+    <!-- include SCROLLMAGIC -->
+    <script src="scrollmagic/uncompressed/ScrollMagic.js"></script>
+    <script src="scrollmagic/uncompressed/plugins/animation.gsap.js"></script>
+    <script src="scrollmagic/uncompressed/plugins/debug.addIndicators.js"></script>
+    <!-- executing js -->
+    <script>
+    $(function() {
+
+      var controller = new ScrollMagic.Controller();
+
+      var forward = new TimelineMax();
+
+      var entered = false;
+
+      var containerScene = new ScrollMagic.Scene({
+          triggerElement: '#container',
+          duration: '100%'
+        })
+        .setPin('#block')
+        .addIndicators()
+        .addTo(controller);
+
+      containerScene.on('enter', function (event) {
+
+        if( entered ){
+          forward.play();
+        }
+        else
+        {
+          forward.add( TweenMax.to('#move1', 0.5, {xPercent: '500%'}) );
+          forward.add( TweenMax.to('#move2', 0.5, {xPercent: '-500%'}) );
+          forward.add( TweenMax.to('#move3', 0.5, {yPercent: '500%'}) );
+          forward.add( TweenMax.to('#move4', 0.5, {yPercent: '-500%'}) );
+          entered = true;
+        }
+      });
+
+      containerScene.on('leave', function (event) {
+        forward.reverse();
+      });
+
+    });
+    </script>
+  </body>
+</html>
