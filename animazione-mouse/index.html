@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Mouse Rotation</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <script src="anime.js/anime.js"></script>
+    <style>
+
+    body{
+      background-color: black;
+    }
+
+    #mousemove-area{
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      width: 200px;
+      height: 300px;
+      border: 0.1px solid rgb(80, 80, 80);
+    }
+
+    #card{
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      width: 200px;
+      height: 300px;
+      border-radius: 10%;
+      perspective: 800px;
+      transform-style: preserve-3d;
+    }
+
+    #background{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: rgb(250, 250, 250);
+      transform-style: preserve-3d;
+      border-radius: 10%;
+      /*transform: translate(-50%,-50%) rotate3d(0,1,0,0deg);*/
+    }
+
+    #card-content{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      background-color: rgb(250, 250, 250);
+      border-radius: 10%;
+      /*transform: translate(-50%,-50%) rotate3d(0,1,0,0deg);*/
+    }
+
+    #card-content p{
+      position: absolute;
+      top: 35%;
+      left: 25%;
+      transform: translate3d(0px,0px,25px);
+      font-family: sans-serif;
+      font-size: 30px;
+      font-weight: 300;
+    }
+    </style>
+  </head>
+  <body>
+
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);">
+      <div id="card">
+        <div id="card-content">
+          <p>Pheega</p>
+        </div>
+      </div>
+      <div id="mousemove-area"></div>
+    </div>
+
+    <script src="greensock-js/src/uncompressed/TweenMax.js"></script>
+    <script>
+
+    /* Animation Toggle */
+
+    // var reverseAnim = anime({
+    //   targets: '#card',
+    //   translateX: 250,
+    //   duration: 1000,
+    //   autoplay: false
+    // });
+    //
+    // $('#mousemove-area').on('mouseenter', function(){
+    //   if(reverseAnim.progress == 100)
+    //   {
+    //     reverseAnim.reset();
+    //     reverseAnim.reverse();
+    //     reverseAnim.play();
+    //   }
+    //   else
+    //   {
+    //     reverseAnim.reset();
+    //     reverseAnim.play();
+    //   }
+    // });
+    //
+    // $('#mousemove-area').on('mouseleave', function(){
+    //   console.log(reverseAnim);
+    //
+    //   if(reverseAnim.progress == 100)
+    //   {
+    //     reverseAnim.reset();
+    //     reverseAnim.reverse();
+    //     reverseAnim.play();
+    //   }
+    //   else
+    //   {
+    //     reverseAnim.reverse();
+    //     reverseAnim.play();
+    //   }
+    //
+    // });
+
+    var deg_Width = 0;
+    var deg_Height = 0;
+
+    var animation_enter = null;
+
+    // mouse enter
+    $('#mousemove-area').on('mouseenter', function(e){
+
+      console.log('enter');
+
+      var div_Width = $(this)[0].clientWidth;
+      var half_Width = div_Width / 2;
+      var cursore_X = e.offsetX;
+
+      var div_Height = $(this)[0].clientHeight;
+      var half_Height = div_Height / 2;
+      var cursore_Y = e.offsetY;
+
+      deg_Width = (cursore_X - half_Width) * 10 / half_Width;
+
+      animation_enter = TweenLite.fromTo('#card-content', 0.5, {
+        rotationX: 0,
+        rotationY: 0
+      }, {
+        rotationX: function(){
+          if(animation_enter.vars.rotationX)
+            return animation_enter.vars.rotationX;
+          else
+          {
+            if(cursore_Y >= half_Width)
+              return -10;
+            else
+              return 10;
+          }
+        },
+        rotationY: function() {
+          if(animation_enter.vars.rotationY)
+            return animation_enter.vars.rotationY;
+          else
+          {
+            if(cursore_X >= half_Width)
+              return 10;
+            else
+              return -10;
+          }
+        }
+      });
+
+      animation_enter.eventCallback("onComplete", function(){
+
+        // mouse move
+        $('#mousemove-area').on('mousemove', function(e){
+          console.log('mouse move');
+
+          var div_Width = $(this)[0].clientWidth;
+          var half_Width = div_Width / 2;
+          var cursore_X = e.offsetX;
+
+          var div_Height = $(this)[0].clientHeight;
+          var half_Height = div_Height / 2;
+          var cursore_Y = e.offsetY;
+
+          deg_Width = (cursore_X - half_Width) * 10 / half_Width;
+          deg_Height = (cursore_Y - half_Height) * 10 / half_Height;
+
+          TweenLite.to( '#card-content', 0.5, {
+            rotationX: -deg_Height,
+            rotationY: deg_Width
+          } )
+        });
+
+      });
+    });
+
+
+    // mouse leave
+    $('#mousemove-area').on('mouseleave', function(e){
+
+      console.log('mouse leave');
+
+      TweenLite.to( '#card-content', 0.5, {
+        rotationX: 0,
+        rotationY: 0
+      } )
+    });
+
+    </script>
+  </body>
+</html>
