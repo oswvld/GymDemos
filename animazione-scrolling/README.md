@@ -1,4 +1,4 @@
-# Effetto Parallasse
+# Effetto durante lo Scroll della pagina
 
 Vengono utilizzate 3 librerie:
 - jQuery https://jquery.com/
