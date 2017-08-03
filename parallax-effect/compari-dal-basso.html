@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+
+	body {
+		margin: 0px;
+	}
+
+	#section1 {
+		position: relative;
+		width: 100vw;
+		height: 100vh;
+		background-color: black;
+	}
+
+	#exampleDiv {
+		position: absolute;
+		width: 300px;
+		height: 300px;
+		background-color: white;
+	}
+
+	.initialState {
+		top: 100%;
+	}
+
+	.finalState {
+		top: 30%;
+	}
+	</style>
+</head>
+<body>
+	<section id="section1">
+		<div id="exampleDiv" class="initialState"></div>
+	</section>
+
+	<script src="http://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+  	<script src="greensock-js/src/uncompressed/plugins/ScrollToPlugin.js"></script>
+  	<script src="greensock-js/src/uncompressed/TweenMax.js"></script>
+  	<script type="text/javascript" src="greensock-js/src/uncompressed/TimelineMax.js"></script>
+  	<script>
+  	$(document).ready(function(){
+  		TweenMax.fromTo('#exampleDiv', 1, {className: 'initialState'}, {className: 'finalState'})
+  		TweenMax.fromTo('#exampleDiv', 2, {opacity: 0}, {opacity: 1})
+  	});
+  	</script>
+</body>
+</html>
