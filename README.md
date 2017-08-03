@@ -18,6 +18,8 @@ Esempio dell'animazione della [pallina che si divide in 4](http://demo01.dsit.it
 
 ### parallax-effect
 Esempio dell'effetto parallax
+- [Versione SEMPLICE](http://demo01.dsit.it/gymdemos/parallax-effect/semplice.html). Questa è la versione con semplice parallasse, senza animazioni allo scrolling
+- [Versione COMPLESSA](http://demo01.dsit.it/gymdemos/parallax-effect/complesso.html). Questa è la versione complessa con le animazione durante lo scrolling
 
 
 ### scrollmagic
