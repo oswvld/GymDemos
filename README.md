@@ -9,7 +9,7 @@ In questa cartella c'è l'esempio dell'[animazione dei cerchi](http://demo01.dsi
 
 
 ### animazione-mouse
-Esempio dell'animazione della carta che si muove al movimento del mouse.
+Esempio dell'animazione della [carta che si muove al movimento del mouse](http://demo01.dsit.it/gymdemos/animazione-mouse).
 
 
 ### animazione-scrolling
