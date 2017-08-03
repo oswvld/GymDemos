@@ -5,7 +5,7 @@ Demo, prove varie per il sito della palestra
 
 
 ### animazione-cerchio
-In questa cartella c'è l'esempio dell'animazione dei cerchi.
+In questa cartella c'è l'esempio dell'[animazione dei cerchi](http://demo01.dsit.it/gymdemos/animazione-cerchio/).
 
 
 ### animazione-mouse
