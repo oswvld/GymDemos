@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+
+		body {
+			margin: 0px;
+		}
+
+		#section1 {
+			position: relative;
+			width: 100vw;
+			height: 100vh;
+			background-color: #EC644B;
+		}
+
+		#section1 .layer-1 {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			color: white;
+		}
+
+		.layer-2 {
+			position: absolute;
+			top: 50%;
+			right: 10%;
+			width: 500px;
+			color: white;
+		}
+
+		#section2 {
+			position: relative;
+			width: 100px;
+			width: 100vw;
+			height: 100vh;
+			background-color: #F1A9A0;
+		}
+	</style>
+</head>
+<body>
+	<div id="parallaxContainer">
+		<section id="section1">
+			<h1 class="layer-1" style="font-family: sans-serif;">Layer 1</h1>
+			<p class="layer-2">
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean metus ligula, malesuada vitae aliquam at, dapibus a neque. Vivamus consequat mi sit amet justo auctor sagittis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus sed erat tincidunt, rutrum diam a, hendrerit ex. Duis imperdiet purus a lacus rutrum luctus. Suspendisse cursus nulla vitae leo molestie fermentum. Vestibulum finibus velit pulvinar dapibus blandit. Vestibulum vestibulum vulputate posuere. Nullam sit amet varius massa, non dignissim ipsum. Curabitur urna lorem, commodo sit amet nunc vel, pulvinar maximus sem. Phasellus vitae pretium risus. Vestibulum scelerisque sollicitudin auctor. Mauris libero nibh, cursus eget viverra ac, accumsan ut velit.
+			</p>
+			</section>
+			<section id="section2"></section>
+	</div>
+
+
+	<script src="http://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+	<script src="../scrollmagic/uncompressed/ScrollMagic.js"></script>
+	<script src="../scrollmagic/uncompressed/plugins/debug.addIndicators.js"></script>
+	<script>
+		$(document).ready(function(){
+			var controller = new ScrollMagic.Controller();
+
+			// build scene
+			var scene = new ScrollMagic.Scene({triggerElement: "#parallaxContainer", duration: 2000, offset: 450})
+				.setPin("#parallaxContainer")
+				.addIndicators() // add indicators (requires plugin)
+				.addTo(controller);
+			});
+	</script>
+</body>
+</html
