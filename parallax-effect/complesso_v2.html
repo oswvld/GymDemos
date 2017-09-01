@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Parallax Complesso - v2</title>
+	<style>
+
+		body{
+			margin: 0px;
+		}
+
+		#section1{
+			position: relative;
+			width: 100vw;
+			height: 100vh;
+			background-color: black;
+		}
+
+		#section2{
+			position: relative;
+			width: 100vw;
+			height: 100vh;
+		}
+
+		#section3{
+			position: relative;
+			width: 100vw;
+			height: 100vh;
+			background-color: black;
+		}
+	</style>
+</head>
+<body>
+	<section id="section1">
+		<h1 style="position: absolute; top: 30%; left: 50%; transform: translate(-50%,-50%); color: white; font-family: sans-serif; font-weight: 300; font-size: 70px; text-align: center;">Parallax Complesso<br/>v2</h1>
+	</section>
+	<section id="section2">
+		<h2 class="element1" style="position: absolute; top: 100px; left: 50px; font-size: 70px; font-family: sans-serif; font-weight: 500;">Hello World!</h2>
+		<p style="position: absolute; top: 250px; left: 500px; font-size: 40px; font-family: sans-serif; font-weight: 300;">Questo è un elemento testuale impostato a seguire il parallasse.<br/><br/>Questo paragrafo invece è fisso.</p>
+	</section>
+	<section id="section3">
+		<h1 class="slide-left" style="position: absolute; left: -500px; color: white; font-family: sans-serif; font-weight: 500; font-size: 60px;">Slide Left</h1>
+	</section>
+	<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="../scrollmagic/uncompressed/ScrollMagic.js"></script>
+	<script type="text/javascript" src="greensock-js/src/uncompressed/TweenMax.js"></script>
+	<script type="text/javascript" src="greensock-js/src/uncompressed/TimelineMax.js"></script>
+	<script type="text/javascript" src="../scrollmagic/uncompressed/plugins/debug.addIndicators.js"></script>
+	<script type="text/javascript" src="../scrollmagic/uncompressed/plugins/animation.gsap.js"></script>
+	<script>
+	$(document).ready(function(){
+
+
+		var controller = new ScrollMagic.Controller({vertical: true});
+
+		// dichiarazione delle proprietà di parallasse dei singoli elementi all'interno della section 1
+		var tween1 = new TimelineMax ()
+		.add([
+			TweenMax.fromTo("#section2 .element1", 1, {y: 300}, {y: -100, ease: Linear.easeNone})
+		]);
+
+		// build scene section 2
+		var scene = new ScrollMagic.Scene({
+			triggerElement: "#section2", 
+			duration: $(window).height()
+		})
+		.setTween(tween1)
+		.addIndicators() // add indicators (requires plugin)
+		.addTo(controller);
+
+
+		var tl_section3_slideleft = new TimelineMax();
+		tl_section3_slideleft.fromTo( $('#section3 .slide-left'), 1.5, {left: -500}, {left: 500, ease: Elastic.easeOut.config(1, 0.3) } );
+		tl_section3_slideleft.pause();
+
+
+		// build scene section 3
+		var scene = new ScrollMagic.Scene({
+			triggerElement: "#section3"
+		})
+		.addIndicators()
+		.addTo(controller);
+
+		scene.on('enter', function(e){
+			console.log(e);
+
+			tl_section3_slideleft.play();
+		});
+
+		scene.on('leave', function(e){
+			console.log(e);
+		});
+
+
+		});
+
+
+	</script>
+</body>
+</html>
