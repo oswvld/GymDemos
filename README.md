@@ -22,5 +22,9 @@ Esempio dell'effetto parallax
 - [Versione COMPLESSA](http://demo01.dsit.it/gymdemos/parallax-effect/complesso.html). Questa è la versione complessa con le animazione durante lo scrolling
 
 
+### pixel-effect
+Esempio dell'effetto di dissolvenza pixel
+
+
 ### scrollmagic
 Build della libreria scrollmagic (http://scrollmagic.io/)
