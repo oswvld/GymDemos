@@ -23,7 +23,7 @@ Esempio dell'effetto parallax
 
 
 ### pixel-effect
-Esempio dell'effetto di dissolvenza pixel
+Esempio dell'[effetto di dissolvenza pixel](http://demo01.dsit.it/gymdemos/pixel-effect/)
 
 
 ### scrollmagic
